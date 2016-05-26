@@ -17,19 +17,7 @@ tell application "System Events"
 			set windowid to 2
 		end if
 		tell window (windowid as integer)
-			set btns to (description of every button)
-			set cnt to 0
-			set reqbtn to 0
-			repeat with b in btns
-				set cnt to cnt + 1
-				if (offset of "full screen" in b) is equal to (1) then
-					set reqbtn to cnt
-				end if
-			end repeat
-			set btns to (every button)
-			if reqbtn > 0 then
-				click item reqbtn of btns
-			end if
+			perform action "AXZoomWindow" of (first button whose subrole is "AXFullScreenButton")
 		end tell
 	end tell
 end tell

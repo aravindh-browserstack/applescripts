@@ -17,7 +17,14 @@ tell application "System Events"
 			set windowid to 2
 		end if
 		tell window (windowid as integer)
-			perform action "AXZoomWindow" of (first button whose subrole is "AXFullScreenButton")
+			set btn to (first button whose subrole is "AXFullScreenButton")
+			-- get position of btn
+			set p to position of btn
+			set xval to item 1 of p
+			set yval to item 2 of p
+			set cmd to "/usr/local/bin/cliclick \"kd:alt,shift\" \"c:" & xval & "," & yval & "\""
+			log cmd
+			do shell script cmd
 		end tell
 	end tell
 end tell
